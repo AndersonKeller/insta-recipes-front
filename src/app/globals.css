@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  list-style: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,5 +17,16 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+  }
+}
+@layer base {
+  body {
+    @apply bg-gray-100 text-gray-500;
+  }
+  button {
+    @apply cursor-pointer border-none;
+  }
+  main {
+    @apply px-5 max-w-[1200px] mx-auto;
   }
 }
