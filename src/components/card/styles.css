@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cardCategorie {
+    @apply flex flex-wrap gap-2 pt-3 ;
+  }
+}

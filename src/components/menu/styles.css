@@ -6,7 +6,8 @@
   .menu {
     @apply px-5 fixed bottom-0 left-0 h-20 w-full text-gray-100 flex items-center justify-center bg-blue-200;
     & nav {
-      @apply flex w-full justify-between max-w-[1200px] mx-auto;
+      @apply flex w-full justify-between 
+      max-w-[1200px] mx-auto;
     }
   }
 }

@@ -1,13 +1,15 @@
+import { Card } from "@/components/card/Card";
 import { api } from "@/services/api";
-
+export interface Categorie {
+  id: number;
+  name: string;
+}
 export default async function Categories() {
   const res = await api.get("/categories");
   console.log(res);
   return (
     <main>
-      {res.data.map((item: any) => (
-        <p key={item.id}>{item.name}</p>
-      ))}
+      <Card categories={res.data} />
     </main>
   );
 }
