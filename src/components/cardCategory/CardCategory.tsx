@@ -1,6 +1,6 @@
 "use client";
-import { useRecipe } from "@/providers/Recipeprovider";
-import { Categorie } from "@/providers/interfaces";
+import { useRecipe } from "@/providers/recipe/RecipeProvider";
+import { Categorie } from "@/providers/recipe/interfaces";
 
 interface CardCategoryProps {
   category: Categorie;
@@ -15,12 +15,12 @@ export function CardCategory({ category }: CardCategoryProps) {
         <ul>
           {recipes.map((recipe) => {
             return (
-              <li>
+              <li key={recipe.id}>
                 <p>{recipe.name}</p>
                 <span>{recipe.minutes}</span>
                 <div>
                   {recipe.recipesIngredients.map((item) => (
-                    <span>{item.ingredient.name}</span>
+                    <span key={item.id}>{item.ingredient.name}</span>
                   ))}
                 </div>
               </li>

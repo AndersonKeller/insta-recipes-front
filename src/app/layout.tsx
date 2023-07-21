@@ -3,7 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Menu } from "@/components/menu/Menu";
-import { RecipeProvider } from "@/providers/Recipeprovider";
+import { RecipeProvider } from "../providers/recipe/RecipeProvider";
+
 const montserrat = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Insta Recipe",

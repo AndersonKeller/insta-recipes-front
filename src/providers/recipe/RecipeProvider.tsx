@@ -24,9 +24,10 @@ export const recipeContext = createContext<recipeValues>({} as recipeValues);
 export function RecipeProvider({ children }: RecipeProps) {
   const [recipes, setRecipes] = useState<Recipe[]>([] as Recipe[]);
   const [categories, setCategories] = useState<Categorie[]>([] as Categorie[]);
-  const [category, setCategory] = useState<Categorie>(
-    categories[0] as Categorie
-  );
+  const [category, setCategory] = useState<Categorie>({
+    name: "aves",
+    id: 1,
+  } as Categorie);
   async function getAllCategories() {
     try {
       const res = await api.get("/categories");
@@ -45,7 +46,6 @@ export function RecipeProvider({ children }: RecipeProps) {
     }
   }
   useEffect(() => {
-    // getRecipesByCategory();
     getAllCategories();
   }, []);
   useEffect(() => {
