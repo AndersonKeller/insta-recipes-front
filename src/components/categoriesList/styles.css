@@ -4,6 +4,6 @@
 
 @layer components {
   .cardCategorie {
-    @apply flex flex-wrap gap-2 pt-3 ;
+    @apply flex items-center overflow-scroll gap-2 pt-3 min-h-max py-2;
   }
 }

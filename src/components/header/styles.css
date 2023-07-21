@@ -4,7 +4,7 @@
 
 @layer components {
   .header {
-    @apply h-20 flex p-6 w-full items-center justify-center 
-    uppercase bg-blue-200 text-gray-100 font-semibold text-xl;
+    @apply rounded-lg h-20 flex p-6 w-full items-center justify-center 
+    uppercase bg-gray-400/10 text-gray-100 font-semibold text-xl;
   }
 }

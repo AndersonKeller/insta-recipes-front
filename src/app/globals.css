@@ -21,12 +21,12 @@
 }
 @layer base {
   body {
-    @apply bg-gray-100 text-gray-500;
+    @apply bg-gray-600/80 text-gray-100 p-2;
   }
   button {
     @apply cursor-pointer border-none;
   }
   main {
-    @apply px-5 max-w-[1200px] mx-auto;
+    @apply px-2 max-w-[1200px] mx-auto;
   }
 }
