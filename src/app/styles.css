@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .header-loading {
+    @apply bg-gray-500 rounded-lg h-20 flex p-6 w-full;
+  }
+  .div-loading {
+    @apply rounded-tr-2xl rounded-bl-2xl bg-gray-500/50 mt-4 h-8 w-full;
+  }
+  .div-loading-circles {
+    @apply flex w-max mx-auto justify-center mt-5 gap-2;
+  }
+  .loading-circles {
+    @apply w-5 h-5 rounded-full bg-gray-500;
+  }
+}
