@@ -1,5 +1,14 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-import { LoginData, UserData } from "./interfaces";
+"use-client";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import axios from "axios";
 import { parseCookies, setCookie, destroyCookie } from "nookies";
 import { api } from "@/services/api";
 
@@ -7,26 +16,14 @@ interface UserProps {
   children: ReactNode;
 }
 interface userValues {
-  //   user: UserData;
-  login: (data: LoginData) => void;
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
 }
 
 export const userContext = createContext<userValues>({} as userValues);
 export function UserProvider({ children }: UserProps) {
   const [token, setToken] = useState("");
-  async function login(data: LoginData) {
-    try {
-      const res = await api.post("/login", data);
-      console.log(res);
-      setToken(res.data.token);
-      setCookie(null, "@insta-recipe-token", token, {
-        maxAge: 30 * 24 * 60 * 60,
-        path: "/",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
   async function verifyLogged() {
     const cookies = parseCookies();
     if (cookies["@insta-recipe-token"]) {
@@ -36,6 +33,9 @@ export function UserProvider({ children }: UserProps) {
             Authorization: `Bearer ${cookies["@insta-recipe-token"]}`,
           },
         });
+        axios.defaults.headers.common["Authorization"] =
+          cookies["@insta-recipe-token"];
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -43,8 +43,11 @@ export function UserProvider({ children }: UserProps) {
   }
   useEffect(() => {
     verifyLogged();
-  });
+  }, []);
   return (
-    <userContext.Provider value={{ login }}>{children}</userContext.Provider>
+    <userContext.Provider value={{ setToken, token }}>
+      {children}
+    </userContext.Provider>
   );
 }
+export const useAuth = () => useContext(userContext);
