@@ -7,7 +7,7 @@ export default async function Home() {
   const recipes: Recipe[] = res.data;
   return (
     <main>
-      <section>
+      <section className="flex flex-col gap-1 mt-3 ">
         {recipes.map((recipe) => (
           <CardRecipe key={recipe.id} recipe={recipe} />
         ))}

@@ -4,8 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import "../styles.css";
-
+import { api } from "@/services/api";
+import { useRouter } from "next/navigation";
 export default function Cadastrar() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -15,6 +17,12 @@ export default function Cadastrar() {
   });
   async function registerApi(userData: UserData) {
     console.log(userData);
+    try {
+      const res = await api.post("/user", userData);
+      router.push("/user/login");
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
@@ -29,7 +37,9 @@ export default function Cadastrar() {
         <label htmlFor="">password</label>
         <input type="password" {...register("password")} />
         <span>{errors.password ? errors.password.message : ""}</span>
-        <button className="btn-form" type="submit">Cadastrar</button>
+        <button className="btn-form" type="submit">
+          Cadastrar
+        </button>
       </form>
       <div>
         <h3>jà possui conta?</h3>

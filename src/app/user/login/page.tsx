@@ -9,8 +9,10 @@ import { useAuth } from "@/providers/user/userProvider";
 import { api } from "@/services/api";
 import { setCookie } from "nookies";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 export default function Login() {
   const { token, setToken } = useAuth();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,21 +20,20 @@ export default function Login() {
   } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
-  function formLogin(formData: LoginData) {
-    async function login(data: LoginData) {
-      try {
-        const res = await api.post("/login", data);
-        setToken(res.data.token);
-        setCookie(null, "@insta-recipe-token", token, {
-          maxAge: 30 * 24 * 60 * 60,
-          path: "/",
-        });
-        axios.defaults.headers.common["Authorization"] = res.data.token;
-      } catch (error) {
-        console.log(error);
-      }
+  async function formLogin(formData: LoginData) {
+    try {
+      const res = await api.post("/login", formData);
+
+      setToken(res.data.token);
+      setCookie(null, "@insta-recipe-token", res.data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: "/",
+      });
+      axios.defaults.headers.common["Authorization"] = res.data.token;
+      router.push("/perfil");
+    } catch (error) {
+      console.log(error);
     }
-    login(formData);
   }
   return (
     <>

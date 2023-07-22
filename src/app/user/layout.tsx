@@ -10,7 +10,10 @@ export default function ProfileLayout({
 }) {
   return (
     <main className=" w-full h-screen flex items-center justify-center">
-      <section className="flex flex-col bg-gray-600/80 w-full p-4 h-max rounded-lg">
+      <section
+        id="section-user"
+        className="section-user flex flex-col bg-gray-600/80 w-full p-4 h-max rounded-lg"
+      >
         <UserProvider>{children}</UserProvider>
       </section>
       <Menu />
