@@ -38,18 +38,28 @@ export default function Login() {
   return (
     <>
       <form className="form" noValidate onSubmit={handleSubmit(formLogin)}>
-        <h2>login</h2>
+        <h2 className="formTitle">login</h2>
         <label htmlFor="email">email</label>
-        <input id="email" type="email" {...register("email")} />
-        <span className="error">
+        <input
+          className="inputUser"
+          id="email"
+          type="email"
+          {...register("email")}
+        />
+        <span className="errorSpan">
           {errors.email ? errors.email.message : ""}
         </span>
         <label htmlFor="password">password</label>
-        <input type="password" {...register("password")} id="password" />
-        <span className="error">
+        <input
+          className="inputUser"
+          type="password"
+          {...register("password")}
+          id="password"
+        />
+        <span className="errorSpan">
           {errors.password ? errors.password.message : ""}
         </span>
-        <button className="btn-form">Login</button>
+        <button className="btnForm">Login</button>
       </form>
       <div>
         <h3>Ainda não possui conta?</h3>

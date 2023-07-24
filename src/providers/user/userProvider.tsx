@@ -60,7 +60,14 @@ export function UserProvider({ children }: UserProps) {
   }, []);
   return (
     <userContext.Provider
-      value={{ loading, setLoading, setToken, token, user, setUser }}
+      value={{
+        loading,
+        setLoading,
+        setToken,
+        token,
+        user,
+        setUser,
+      }}
     >
       {children}
     </userContext.Provider>

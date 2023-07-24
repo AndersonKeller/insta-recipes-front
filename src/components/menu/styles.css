@@ -4,11 +4,16 @@
 
 @layer components {
   .menu {
-    @apply px-5 fixed bottom-0 h-20 w-[95%] text-gray-100 flex items-center 
+    @apply px-4 fixed bottom-2 h-20 w-[95%] text-gray-100 flex items-center 
     justify-center bg-gray-400/10 rounded-lg;
   }
   .menu nav {
     @apply flex w-full justify-between 
     max-w-[1200px] mx-auto;
+  }
+  .nav-link-menu {
+    @apply flex items-center text-sm hover:bg-gray-600/50 p-2 
+    rounded-md hover:text-red-200 font-medium focus:text-red-200
+     focus:bg-gray-600/50;
   }
 }

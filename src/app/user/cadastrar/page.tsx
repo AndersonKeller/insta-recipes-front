@@ -27,17 +27,27 @@ export default function Cadastrar() {
   return (
     <>
       <form noValidate onSubmit={handleSubmit(registerApi)} className="form">
-        <h2>Cadastro</h2>
+        <h2 className="formTitle">Cadastro</h2>
         <label htmlFor="">username</label>
-        <input type="text" {...register("name")} />
-        <span>{errors.name ? errors.name.message : ""}</span>
+        <input className="inputUser" type="text" {...register("name")} />
+        <span className="errorSpan">
+          {errors.name ? errors.name.message : ""}
+        </span>
         <label htmlFor="">email</label>
-        <input type="email" {...register("email")} />
-        <span>{errors.email ? errors.email.message : ""}</span>
+        <input className="inputUser" type="email" {...register("email")} />
+        <span className="errorSpan">
+          {errors.email ? errors.email.message : ""}
+        </span>
         <label htmlFor="">password</label>
-        <input type="password" {...register("password")} />
-        <span>{errors.password ? errors.password.message : ""}</span>
-        <button className="btn-form" type="submit">
+        <input
+          className="inputUser"
+          type="password"
+          {...register("password")}
+        />
+        <span className="errorSpan">
+          {errors.password ? errors.password.message : ""}
+        </span>
+        <button className="btnForm" type="submit">
           Cadastrar
         </button>
       </form>

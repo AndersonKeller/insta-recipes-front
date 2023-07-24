@@ -1,12 +1,25 @@
 import Link from "next/link";
+
 import "./styles.css";
+import { GoHome } from "react-icons/go";
+import { FaRegUser } from "react-icons/fa";
+import { TbFiles } from "react-icons/tb";
 export function Menu() {
   return (
     <section className="menu">
       <nav>
-        <Link href={"/dashboard"}>Home</Link>
-        <Link href={"/dashboard/categorias"}>Categorias</Link>
-        <Link href={"/perfil"}>Perfil</Link>
+        <Link href={"/dashboard"} className="nav-link-menu">
+          <GoHome className="w-6 h-6" />
+          <p>Home</p>
+        </Link>
+        <Link href={"/dashboard/categorias"} className="nav-link-menu">
+          <TbFiles className="w-6 h-6" />
+          <p>Categorias</p>
+        </Link>
+        <Link href={"/perfil"} className="nav-link-menu">
+          <FaRegUser className="w-6 h-6" />
+          <p>Perfil</p>
+        </Link>
       </nav>
     </section>
   );

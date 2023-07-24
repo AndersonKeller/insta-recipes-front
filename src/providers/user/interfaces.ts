@@ -1,6 +1,9 @@
 import { z } from "zod";
 export const userSchema = z.object({
-  name: z.string(),
+  name: z
+    .string()
+    .nonempty("o nome obrigatório")
+    .min(4, "nome deve conter no mínimo 4 caracteres"),
   email: z
     .string()
     .email("formato de email inválido")
