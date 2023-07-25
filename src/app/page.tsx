@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main
-      className="bg-blue-500 fixed top-0 left-0 w-full h-screen flex items-center
+      className="mainDashboard bg-blue-500 fixed top-0 left-0 w-full h-screen flex items-center
     justify-center flex-col gap-3 px-4"
     >
       <h1 className="uppercase font-bold text-2xl">

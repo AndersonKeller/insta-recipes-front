@@ -1,3 +1,5 @@
+import { UserData } from "../user/interfaces";
+
 export interface Recipe {
   name: string;
   description: string | null;
@@ -5,6 +7,8 @@ export interface Recipe {
   minutes: number;
   categorie: string;
   id: number;
+  rendimentPortions: number;
+  user: UserData;
   recipesIngredients: RecipeIngredient[];
 }
 export interface Categorie {

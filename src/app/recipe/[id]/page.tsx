@@ -11,6 +11,18 @@ export default async function RecipeId({ params }: { params: { id: string } }) {
     <main>
       <section className="bg-blue-100/10 rounded-tr-2xl rounded-bl-2xl mt-4 p-2">
         <h1>{recipe?.name}</h1>
+        <p>Ingredientes:</p>
+        {recipe?.recipesIngredients.map((ingredient) => {
+          return (
+            <ul className="flex gap-2">
+              <span>-</span>
+              <li>{ingredient.quantity}</li>
+              <li>{ingredient.quantityType}</li>
+              <li>{ingredient.ingredient.name}</li>
+            </ul>
+          );
+        })}
+        <p>{recipe?.preparationMode}</p>
       </section>
     </main>
   );

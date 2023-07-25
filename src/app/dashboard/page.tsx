@@ -6,6 +6,7 @@ import { api } from "@/services/api";
 export default async function Home() {
   const res = await api.get("/recipe");
   const recipes: Recipe[] = res.data;
+  console.log(res.data);
   return (
     <main>
       <SearchInput recipes={recipes} />
