@@ -16,7 +16,6 @@ export default function Cadastrar() {
     resolver: zodResolver(userSchema),
   });
   async function registerApi(userData: UserData) {
-    console.log(userData);
     try {
       const res = await api.post("/user", userData);
       router.push("/user/login");

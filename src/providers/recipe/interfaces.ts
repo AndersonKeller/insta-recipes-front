@@ -25,3 +25,8 @@ export interface RecipeIngredient {
   quantityType: string;
   ingredient: Ingredient;
 }
+export interface Comments {
+  id: number;
+  comment: string;
+  user: UserData;
+}

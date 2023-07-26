@@ -1,19 +1,19 @@
 "use client";
 import { useAuth } from "@/providers/user/userProvider";
 import "./styles.css";
-
-import Loading from "../loading";
+import { BsArrowRightCircle, BsArrowDownCircle } from "react-icons/bs";
 import { NotLogged } from "@/components/notLogged/NotLogged";
 import { useEffect, useState } from "react";
 import { Recipe } from "@/providers/recipe/interfaces";
 import { api } from "@/services/api";
-import { parseCookies, setCookie, destroyCookie } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 import { FiLogOut } from "react-icons/fi";
 import { CardRecipe } from "@/components/cardRecipe/CardRecipe";
 import { useRouter } from "next/navigation";
 export default function Perfil() {
-  const { user, loading, setUser } = useAuth();
+  const { user, setUser } = useAuth();
   const [recipes, setRecipes] = useState<Recipe[]>([] as Recipe[]);
+  const [showRecipes, setShowRecipes] = useState(false);
   const router = useRouter();
   async function getRecipesByUser() {
     const cookies = parseCookies();
@@ -33,7 +33,9 @@ export default function Perfil() {
     destroyCookie(null, "@insta-recipe-token");
     setUser({ name: "", email: "", password: "" });
     router.push("/dashboard");
-    console.log("logout");
+  }
+  function toggleRecipes() {
+    setShowRecipes(!showRecipes);
   }
   useEffect(() => {
     user && getRecipesByUser();
@@ -52,14 +54,22 @@ export default function Perfil() {
               <FiLogOut className="h-6 w-6" />
             </button>
           </div>
-          <h3>Minhas receitas</h3>
+          <button
+            onClick={() => toggleRecipes()}
+            className="flex items-center gap-3"
+          >
+            Minhas receitas
+            {!showRecipes ? <BsArrowRightCircle /> : <BsArrowDownCircle />}
+          </button>
 
-          <section className="flex flex-col gap-1 mt-3 ">
-            {recipes &&
-              recipes.map((recipe) => (
-                <CardRecipe key={recipe.id} recipe={recipe} />
-              ))}
-          </section>
+          {showRecipes && (
+            <section className="flex flex-col gap-1 mt-3 transition-transform duration-1000">
+              {recipes &&
+                recipes.map((recipe) => (
+                  <CardRecipe key={recipe.id} recipe={recipe} profile={true} />
+                ))}
+            </section>
+          )}
         </div>
       ) : (
         <NotLogged />

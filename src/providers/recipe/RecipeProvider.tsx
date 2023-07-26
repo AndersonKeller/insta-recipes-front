@@ -18,11 +18,17 @@ interface recipeValues {
   category: Categorie;
   setCategory: Dispatch<SetStateAction<Categorie>>;
   recipes: Recipe[];
+  setRecipes: Dispatch<SetStateAction<Recipe[]>>;
+  filteredRecipes: Recipe[];
+  setFilteredRecipes: Dispatch<SetStateAction<Recipe[]>>;
 }
 export const recipeContext = createContext<recipeValues>({} as recipeValues);
 
 export function RecipeProvider({ children }: RecipeProps) {
   const [recipes, setRecipes] = useState<Recipe[]>([] as Recipe[]);
+  const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>(
+    [] as Recipe[]
+  );
   const [categories, setCategories] = useState<Categorie[]>([] as Categorie[]);
   const [category, setCategory] = useState<Categorie>({
     name: "aves",
@@ -36,9 +42,10 @@ export function RecipeProvider({ children }: RecipeProps) {
       console.log(error);
     }
   }
-  async function getRecipesByCategory() {
+
+  async function getRecipes() {
     try {
-      const response = await api.get(`/categories/${category.name}`);
+      const response = await api.get(`/recipe`);
 
       setRecipes(response.data);
     } catch (error) {
@@ -47,13 +54,20 @@ export function RecipeProvider({ children }: RecipeProps) {
   }
   useEffect(() => {
     getAllCategories();
+    getRecipes();
   }, []);
-  useEffect(() => {
-    getRecipesByCategory();
-  }, [category]);
+
   return (
     <recipeContext.Provider
-      value={{ setCategory, category, categories, recipes }}
+      value={{
+        setCategory,
+        category,
+        categories,
+        recipes,
+        setRecipes,
+        filteredRecipes,
+        setFilteredRecipes,
+      }}
     >
       {children}
     </recipeContext.Provider>
