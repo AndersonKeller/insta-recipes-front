@@ -40,12 +40,16 @@ export const recipeIngredientSchema = z.object({
   ingredient: ingredientSchema,
 });
 export const recipeSchema = z.object({
-  name: z.string(),
-  description: z.string(),
-  preparationMode: z.string(),
-  minutes: z.string(),
-  categorie: z.string(),
-  rendimentPortions: z.string(),
+  name: z.string().nonempty("Qual o nome da sua receita?"),
+  description: z.string().nonempty("Forneça uma breve descrição"),
+  preparationMode: z.string().min(5, "Descreva o modo de preparo"),
+  minutes: z.string().nonempty("Você deve informar um tempo em minutos"),
+  categorie: z
+    .string({ invalid_type_error: "Escolha uma categoria" })
+    .nonempty("Escolha uma categoria"),
+  rendimentPortions: z
+    .string()
+    .nonempty("Voçê deve informar a quantidade de porções"),
 
   // recipesIngredients: recipeIngredientSchema,
 });

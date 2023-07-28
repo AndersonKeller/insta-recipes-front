@@ -5,7 +5,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
 import "./styles.css";
+import { useAuth } from "@/providers/user/userProvider";
 export function CreteRecipeForm() {
+  const { user } = useAuth();
   const { categories } = useRecipe();
   const {
     register,
@@ -16,6 +18,7 @@ export function CreteRecipeForm() {
   });
   async function createRecipe(formData: RecipeData) {
     console.log(formData);
+    console.log(user);
   }
 
   return (
@@ -44,9 +47,12 @@ export function CreteRecipeForm() {
         {errors.preparationMode ? errors.preparationMode.message : ""}
       </span>
       <p>Tempo de preparo em minutos (estimativa)</p>
-      <input type="text" {...register("minutes")} />
+      <input type="number" {...register("minutes")} />
+      <span className="errorSpan">
+        {errors.minutes ? errors.minutes.message : ""}
+      </span>
       <p>Quantas porções ela rende? (estimativa)</p>
-      <input type="text" {...register("rendimentPortions")} />
+      <input type="number" {...register("rendimentPortions")} />
       <span className="errorSpan">
         {errors.rendimentPortions ? errors.rendimentPortions.message : ""}
       </span>
@@ -62,7 +68,7 @@ export function CreteRecipeForm() {
             />
             <span
               className="block group-checked:text-red-300 bg-transparent 
-              py-1 px-2 group-hover:bg-red-500 group-hover:w-full"
+              py-0 px-2 group-hover:bg-red-500 group-hover:w-full"
             >
               {category.name}
             </span>
