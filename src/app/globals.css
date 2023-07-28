@@ -25,7 +25,7 @@
     @apply cursor-pointer border-none;
   }
   main {
-    @apply px-2 max-w-[1200px] mx-auto overflow-y-auto max-h-[76vh];
+    @apply px-2 max-w-[1200px] mx-auto overflow-y-auto;
   }
   .mainDashboard {
     @apply max-h-screen min-h-screen;
