@@ -1,9 +1,11 @@
+"use client";
 import { Header } from "@/components/header/Header";
 import "../globals.css";
 import type { Metadata } from "next";
 
 import { Menu } from "@/components/menu/Menu";
 import { RecipeProvider } from "../../providers/recipe/RecipeProvider";
+import { UserProvider } from "@/providers/user/userProvider";
 
 export const metadata: Metadata = {
   title: "Insta Recipe",
@@ -17,9 +19,11 @@ export default function RecipeLayout({
 }) {
   return (
     <RecipeProvider>
-      <Header />
-      <Menu />
-      {children}
+      <UserProvider>
+        <Header />
+        <Menu />
+        {children}
+      </UserProvider>
     </RecipeProvider>
   );
 }

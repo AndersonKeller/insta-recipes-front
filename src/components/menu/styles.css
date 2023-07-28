@@ -9,7 +9,7 @@
   }
   .menu nav {
     @apply flex w-full justify-between 
-    max-w-[1200px] mx-auto;
+    max-w-[1200px] mx-auto items-center;
   }
   .nav-link-menu {
     @apply flex items-center text-sm hover:bg-gray-600/50 p-2 

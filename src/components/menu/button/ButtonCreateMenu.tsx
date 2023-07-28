@@ -1,37 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useAuth } from "@/providers/user/userProvider";
+import Link from "next/link";
 
-interface ButtonCreateMenuProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
-export function ButtonCreateMenu({ ...rest }: ButtonCreateMenuProps) {
-  const [open, setOpen] = useState(false);
-  function openMenu() {
-    setOpen(!open);
-  }
+export function ButtonCreateMenu() {
+  const { user } = useAuth();
+
   return (
-    <div className="fixed flex flex-col w-full bottom-[36px] left-0">
-      {open && (
-        <div
-          className="w-max absolute bottom-0 left-[62px] gap-2 flex-col flex items-center 
-      justify-between"
-        >
-          <button className="text-xs py-2 shadow-md px-3 bg-gray-600 rounded-2xl text-center lowercase">
-            Comentar
-          </button>
-          <button className="text-xs py-2 shadow-md px-3 bg-gray-600 rounded-2xl text-center lowercase">
-            Criar
-          </button>
-        </div>
-      )}
-      <button
-        onClick={() => openMenu()}
-        {...rest}
+    <div className="flex flex-col items-center mt-[-10px]">
+      <Link
+        href={user?.name ? "/recipe/create" : "/user/login"}
         className="mt-[-16px] self-center rounded-full bg-green-700
         h-12 w-12 text-3xl font-bold flex items-center justify-center"
       >
-        {open ? "x" : "+"}
-      </button>
+        +
+      </Link>
+      <p>Criar</p>
     </div>
   );
 }

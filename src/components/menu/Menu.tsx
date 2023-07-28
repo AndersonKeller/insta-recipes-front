@@ -14,6 +14,7 @@ export function Menu() {
           <p>Home</p>
         </Link>
         <ButtonCreateMenu />
+
         <Link href={"/perfil"} className="nav-link-menu">
           <FaRegUser className="w-6 h-6" />
           <p>Perfil</p>
